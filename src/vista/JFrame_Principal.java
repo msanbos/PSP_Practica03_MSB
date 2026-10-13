@@ -17,6 +17,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
      */
     public JFrame_Principal() {
         initComponents();
+        pVer = new JPanelVer();
+        
     }
 
     /**
@@ -76,7 +78,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.setContentPane(new JPanelVer());
+        this.setContentPane(pVer);
         //Para que lo muestre inmediatamente al pulsarlo
         this.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -105,7 +107,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new JFrame_Principal().setVisible(true));
     }
-
+    //Variable para los paneles
+    private JPanelVer pVer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
