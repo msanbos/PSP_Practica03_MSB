@@ -1,6 +1,5 @@
 package modelo;
-
-//Para usar LocalDate debemos importarla 
+//Para usar LocalDate debemos importarla de java.time
 import java.time.LocalDate;
 
 public class Cliente {
@@ -10,15 +9,19 @@ public class Cliente {
     private float puntos; //Cambiamos de double a float
     private LocalDate fechaNac;
     
-    //Serán todas obligatorias
-    public Cliente(int numero, String nombre, int edad,float puntos, LocalDate fechaNac){
+    //Constructor sin incluir los puntos, serán 0
+    public Cliente(int numero, String nombre, int edad, LocalDate fechaNac){
         this.numero = numero;
         this.nombre = nombre;
         this.edad = edad;
-        this.puntos = puntos;
-        this.fechaNac = fechaNac;
+        this.fechaNac = fechaNac;        
+        this.puntos = 0;
     }
-    
+    //Constructor incluyendo todos los atributos
+    public Cliente(int numero, String nombre, int edad,LocalDate fechaNac, float puntos){
+        this(numero,nombre,edad,fechaNac);
+        this.puntos = puntos;
+    }
     
     public int getNumero() {return numero;}
     public void setNumero(int numero) {this.numero = numero;}
