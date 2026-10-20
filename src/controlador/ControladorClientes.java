@@ -3,6 +3,8 @@ package controlador;
 import modelo.Cliente;//Importamos el modelo
 import java.time.LocalDate;//Importamos LocalDate
 import  java.util.ArrayList;//Las colecciones que vamos a usar
+import java.util.Collections;
+import java.util.Comparator;//Para usar compare
 
 public class ControladorClientes {
     private ArrayList<Cliente> lista;//Declaramos nuestra lista
@@ -96,7 +98,41 @@ public class ControladorClientes {
         
     }
     
+    public void borrarCliente (){
+        if(!lista.isEmpty()){
+            lista.remove(actual);
+        }
+        //Si el índice es mayor que el tamaño de la lista y que 0
+        if(actual > lista.size() && actual > 0){
+            actual--;//Bajamos el índice al anterior que se ha borrado
+        }
+    }
     
+    public Cliente clienteActual(){
+        if(!lista.isEmpty()){
+            return null;
+        }else{
+            return lista.get(actual);
+        }
+        
+    }
+    
+    /**Método que ordena por número la lista
+     * Hemos elegido el método de añadir un comparator en una clase 
+     * anónima al mismo método sort. Sobrescribimos el método compare 
+     * intrínseco de Object
+     * 
+     */
+    public void ordenarPorNumero (){
+        Collections.sort(lista, new Comparator<Cliente>(){
+            @Override
+            public int compare(Cliente c1,Cliente c2){
+                return Integer.compare(c1.getNumero(),c2.getNumero());
+            }
+        });
+    }
+    //FALTAN MÉTODOS:
+    //borrarCliente,obtenerClienteActual,ordenarPorNumeroCliente
     
     
     

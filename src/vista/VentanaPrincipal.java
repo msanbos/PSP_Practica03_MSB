@@ -1,11 +1,12 @@
 package vista;
 
+import controlador.ControladorClientes;
 import javax.swing.*;
 import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
-    private static final String CARD_A = "VISUALIZAR";
-    private static final String CARD_B = "NUEVO";
+    private static final String CARD_VISUAL = "VISUALIZAR";
+    private static final String CARD_NUEVO = "NUEVO";
     
     //Usado para mostrar un panel u otro
     private final CardLayout cardLayout = new CardLayout ();
@@ -23,8 +24,8 @@ public class VentanaPrincipal extends JFrame {
         super("Gestor Clientes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        contenedor.add(panelVisual,CARD_A);
-        contenedor.add(panelNuevo,CARD_B);
+        contenedor.add(panelVisual,CARD_VISUAL);
+        contenedor.add(panelNuevo,CARD_NUEVO);
         add(contenedor);
         
         setJMenuBar(crearMenu());
@@ -33,7 +34,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null); // Para centrar la ventana
     }
     
-    private JMenuBar CrearMenu(){
+    private JMenuBar crearMenu(){
         //Creamos los items del menú
         JMenuItem itemA = new JMenuItem("Visualizar Cliente");
         JMenuItem itemB = new JMenuItem("Nuevo Cliente");
@@ -42,7 +43,7 @@ public class VentanaPrincipal extends JFrame {
         itemA.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                cardLayout.show(contenedor, CARD_A);
+                cardLayout.show(contenedor, CARD_VISUAL);
             }
         });        
         itemB.addActionListener(new ActionListener(){
@@ -52,7 +53,7 @@ public class VentanaPrincipal extends JFrame {
                 PASO DE DATOS DE UN PANEL A OTRO del ejemplo
                 panelNuevo.setNumero(panelVisual.getNumero());
                 */
-                cardLayout.show(contenedor, CARD_B);
+                cardLayout.show(contenedor, CARD_NUEVO);
             }
         });
         itemSalir.addActionListener(new ActionListener(){
