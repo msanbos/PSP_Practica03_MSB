@@ -1,5 +1,6 @@
 package controlador;
-
+//LO PODRIAMOS HACER STATIC, A LA HORA DE MANEJARLO ES MÁS CÓMODO
+//Primero vamos a hacer la versión sin STATIC y luego si da tiempo STATIC
 import modelo.Cliente;//Importamos el modelo
 import java.time.LocalDate;//Importamos LocalDate
 import  java.util.ArrayList;//Las colecciones que vamos a usar
@@ -8,11 +9,12 @@ import java.util.Comparator;//Para usar compare
 
 public class ControladorClientes {
     private ArrayList<Cliente> lista;//Declaramos nuestra lista
-    private int actual = 0 ; //Inicializamos en el primero
+    private int actual; //Inicializamos en el primero
     
     //Inicializamos la lista en el constructor
     public ControladorClientes(){
         this.lista = new ArrayList<>();
+        this.actual = 0;
     }
     /**
      * Método que comprueba si la lista está vacía
