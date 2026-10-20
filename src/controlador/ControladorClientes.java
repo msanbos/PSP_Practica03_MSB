@@ -54,6 +54,7 @@ public class ControladorClientes {
     
     /**
      * Función que recoge los String de la vista y los válida para añadir Cliente
+     * Si se da algún error devuelve el String de error concreto
      * @param numero
      * @param nombre
      * @param edad
