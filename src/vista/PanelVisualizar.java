@@ -57,5 +57,28 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         
     }
     
+    public void actualizarVista(){
+        //Cogemos de la instancia static el cliente actual
+        Cliente c = ControladorClientes.controladorClientes.clienteActual();
+        //Este método devuelve null si no hay
+        if(c != null){
+            numField.setText(String.valueOf(c.getNumero()));
+            nomField.setText(c.getNombre());
+            edadField.setText(String.valueOf(c.getEdad()));
+            fecField.setText(c.getFecha().toString());
+            punField.setText(String.valueOf(c.getPuntos()));
+        }else{
+            numField.setText(""); nomField.setText("");
+            edadField.setText(""); fecField.setText(""); punField.setText("");        
+        }
+        
+        //Desactivamos los botones usando las funciones del controlador
+        anterior.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
+        siguiente.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
+        primero.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
+        ultimo.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
+        borrar.setEnabled(!ControladorClientes.controladorClientes.esVacia());
+    }
+    
     //
 }
