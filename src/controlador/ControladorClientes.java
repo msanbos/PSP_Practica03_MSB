@@ -160,7 +160,7 @@ public class ControladorClientes {
      * Añade cliente a la lista directamente
      * @param cliente 
      */
-    /*LA VERSIÓN QUE PIDE TOMÁS CON SALIDA DE ERROR POR CONSOLA
+    /*LA VERSIÓN CON SALIDA DE ERROR POR CONSOLA
     public void añadirCliente(Cliente cliente){
         lista.add(cliente);
         actual = lista.size()-1;//para que se ponga en esta posición
