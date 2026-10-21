@@ -2,7 +2,7 @@ package controlador;
 //LO PODRIAMOS HACER STATIC, A LA HORA DE MANEJARLO ES MÁS CÓMODO
 //Primero vamos a hacer la versión sin STATIC y luego si da tiempo STATIC
 import modelo.Cliente;//Importamos el modelo
-import java.time.LocalDate;//Importamos LocalDate
+import java.time.LocalDate;
 import  java.util.ArrayList;//Las colecciones que vamos a usar
 import java.util.Collections;
 import java.util.Comparator;//Para usar compare
@@ -65,7 +65,7 @@ public class ControladorClientes {
      * @param puntos
      * @param fechaNac
      * @return 
-     */
+     */    
     public String añadirCliente(String numero,String nombre, String edad, String puntos, String fechaNac){
         //Parseamos los Stringd de la Vista a sus valores reales
         int num = Integer.parseInt(numero);
@@ -91,12 +91,10 @@ public class ControladorClientes {
         }
         
         //Una vez validado todo -> Añadimos cliente
-        Cliente nuevoCliente = new Cliente(num,nombre,ed,fecha,punt);
-        //Lo añadimos a la colección
-        lista.add(nuevoCliente);
-        //Actualizamos el índice del controlador
-        actual = lista.size() - 1;
-        return ""; //Devolvemos la cadena vacía para indicar que no hay errores
+        Cliente nuevoCliente = new Cliente(num,nombre,ed,fecha,punt);        
+        lista.add(nuevoCliente);//Lo añadimos a la colección
+        actual = lista.size() - 1;//Ponemos esta posicion en la lista
+        return null; //Devolvemos la cadena null para indicar que no hay errores
         
     }
     
@@ -133,10 +131,30 @@ public class ControladorClientes {
             }
         });
     }
-    //FALTAN MÉTODOS:
-    //borrarCliente,obtenerClienteActual,ordenarPorNumeroCliente
+    /**
+     * CLASE PARA DEPURAR QUE FUNCIONA LA LISTA
+     */
+    public void mostrarClientes(){
+        for(Cliente c : lista){
+            System.out.print(c+" ");
+        }
+    }  
     
     
+    
+    
+
+    
+    /**
+     * Añade cliente a la lista directamente
+     * @param cliente 
+     */
+    /*LA VERSIÓN QUE PIDE TOMÁS CON SALIDA DE ERROR POR CONSOLA
+    public void añadirCliente(Cliente cliente){
+        lista.add(cliente);
+        actual = lista.size()-1;//para que se ponga en esta posición
+    }
+    */
     
     
 }
