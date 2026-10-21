@@ -23,23 +23,29 @@ public class VentanaPrincipal extends JFrame {//HEREDA DE JFRAME
     //Creamos los paneles, una sola vez asi conservan su estado al cambiar 
     private final PanelVisualizar panelVisual = new PanelVisualizar();
     private final PanelNuevo panelNuevo = new PanelNuevo();
+    //Como las clases Visual y Nuevo heredan de JPanel estas serán las cards
+    
     
     /**
      * En el Constructor; incluimos el nombre de la ventana, añadimos los
-     * paneles en el contenedor principal y añadimos el menú
+     * paneles (cards) en el contenedor principal (cardLayout) y añadimos el menú
      */    
     public VentanaPrincipal(){
         super("Gestor Clientes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false); // Para que no se pueda redimensionar
         
+        //Incluimos las cards en el cardLayout, que son los JPanel instanciados antes.
         contenedor.add(panelVisual,"visual");
         contenedor.add(panelNuevo,"nuevo");
         add(contenedor);//Como hereda de JFrame hace sobrecarga al contenedor principal
         
         setJMenuBar(crearMenu());//Creamos el menú con el método
         
-        setSize(500,350);
+        setSize(500,350);//Definimos el tamaño
         setLocationRelativeTo(null); // Para centrar la ventana
+        
+        panelVisual.actualizarVista();//Para presentar el primer cliente
     }
     
     /**
@@ -48,7 +54,7 @@ public class VentanaPrincipal extends JFrame {//HEREDA DE JFRAME
      */
     private JMenuBar crearMenu(){
         //Creamos los items del menú
-        JMenuItem itemA = new JMenuItem("Visualizar Cliente");
+        JMenuItem itemA = new JMenuItem("Visualizar Clientes");
         JMenuItem itemB = new JMenuItem("Nuevo Cliente");
         JMenuItem itemSalir = new JMenuItem("Salir");
         //Luego los listener al pulsarlos
@@ -113,7 +119,7 @@ public class VentanaPrincipal extends JFrame {//HEREDA DE JFRAME
     
 /*    
 public class VentanaPrincipal extends JFrame {//HEREDA DE JFRAME
-    /*PARA CONTROLAR "LO QUE SE ESCRIBE" DESDE LOS ATRIBUTOS
+    //PARA CONTROLAR "LO QUE SE ESCRIBE" DESDE LOS ATRIBUTOS
     private static final String CARD_VISUAL = "VISUALIZAR";
     private static final String CARD_NUEVO = "NUEVO";
 */
@@ -126,7 +132,7 @@ PASO DE DATOS DE UN PANEL A OTRO del ejemplo
     
 /*EXPLICACIÓN CARDLAYOUT
     
-    // Crear el contenedor con CardLayout
+// Crear el contenedor con CardLayout
 JPanel cards = new JPanel(new CardLayout());
 
 // Crear las "tarjetas" (paneles)
@@ -160,13 +166,13 @@ cards.add(card2, "paso2");
     "tarjeta" es que está dentro del JPanel que usa CardLayout.
     
     JPanel cards = new JPanel(new CardLayout());
-//                                  ^^^^^^^^^^
+//                                ^^^^^^^^^^
 //          Aquí se CREA y se ASIGNA como layout manager del contenedor
     
     Pero para controlar el cambio de tarjetas necesitas una referencia a ese
     CardLayout. La obtienes así:
     
     CardLayout cl = (CardLayout) cards.getLayout();
-//              ^^^^^^^^^^ cast porque getLayout() devuelve LayoutManager
+//                   ^^^^^^^^^^ cast porque getLayout() devuelve LayoutManager
 */
 }

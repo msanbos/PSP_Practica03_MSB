@@ -1,13 +1,23 @@
 package controlador;
-//LO PODRIAMOS HACER STATIC, A LA HORA DE MANEJARLO ES MÁS CÓMODO
-//Primero vamos a hacer la versión sin STATIC y luego si da tiempo STATIC
+
 import modelo.Cliente;//Importamos el modelo
 import java.time.LocalDate;
-import  java.util.ArrayList;//Las colecciones que vamos a usar
+import java.util.ArrayList;//Las colecciones que vamos a usar
 import java.util.Collections;
 import java.util.Comparator;//Para usar compare
 
+/*
+Podemos pasar los datos de la lista y el indice de varias maneras:
+
+1.-PASANDO LA INSTANCIA DEL CONTROLADOR AL PanelVisualizar directamente a su 
+constructor
+2.-CREAR MÉTODOS SET/GET
+3.-CREANDO UNA INSTANCIA STATIC Y PÚBLICA (EL MÉTODO QUE VAMOS A USAR)
+*/
 public class ControladorClientes {
+    //Instancia del controlador static y public para manejar sus datos
+    public static ControladorClientes controladorClientes = new ControladorClientes();
+    
     private ArrayList<Cliente> lista;//Declaramos nuestra lista
     private int actual; //Inicializamos en el primero
     
@@ -130,6 +140,7 @@ public class ControladorClientes {
                 return Integer.compare(c1.getNumero(),c2.getNumero());
             }
         });
+        actual = 0; //Ponemos la lista mirando al primero
     }
     /**
      * CLASE PARA DEPURAR QUE FUNCIONA LA LISTA
