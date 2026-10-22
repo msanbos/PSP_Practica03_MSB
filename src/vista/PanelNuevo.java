@@ -109,6 +109,12 @@ public class PanelNuevo extends JPanel{// HEREDAN DE JPANEL
                             + " revise los campos numéricos","Error de formato",
                             JOptionPane.ERROR_MESSAGE);
                 }
+            }       
+        });
+        limpiarBtn.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                limpiarCampos();
             }
         });
         
