@@ -5,6 +5,8 @@ import modelo.Cliente;
         
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
     //Text Field para incluir los datos
@@ -18,17 +20,11 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
     
     //Constructor
     public PanelVisualizar(){
-        //EN ESTE CASO HEREDAMOS DE JPANEL (this) y le damos las propiedades que le 
-        //dariamos a un panel contenedor 
-        setLayout(new BorderLayout(10, 10));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));    
-        
-        //
         //Creamos las etiquetas
         numLabel = new JLabel("Número:");
         nomLabel = new JLabel("Nombre:");
         edadLabel = new JLabel("Edad:");
-        punLabel = new JLabel("Fecha de Nacimiento:");        
+        fecLabel = new JLabel("Fecha de Nacimiento:");        
         punLabel = new JLabel("PUNTOS:");       
         
         //Instanciamos los textField
@@ -46,14 +42,95 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         punField.setForeground(Color.blue);    
         
         //Creamos los botones
-        siguiente = new JButton ("Siguiente ->");
-        anterior = new JButton ("<- Anterior");
+        siguiente = new JButton ("Siguiente >");
+        anterior = new JButton ("< Anterior");
         ultimo = new JButton ("Último");
         primero = new JButton ("Primero");        
-        borrar = new JButton ("ELIMINAR CLIENTE");        
+        borrar = new JButton ("BORRAR");        
         
+        /*CREAMOS LOS PANELES
         
+        EN ESTE CASO HEREDAMOS DE JPANEL (this) y le damos las propiedades que 
+        le dariamos a un panel contenedor 
+        */
+        setLayout(new BorderLayout(10, 10));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));   
         
+        //Creamos el panel navegación y añadimos los componentes
+        JPanel panelNav = new JPanel();
+        panelNav.setLayout(new GridLayout(1,0));//Solo una fila
+        panelNav.add(ultimo);
+        panelNav.add(anterior);
+        panelNav.add(siguiente);
+        panelNav.add(primero);
+        
+        //Creamos el panel de los Label
+        JPanel panelLabel = new JPanel();
+        panelLabel.setLayout(new GridLayout(0,1));//Una columna
+        panelLabel.add(numLabel);
+        panelLabel.add(nomLabel);
+        panelLabel.add(edadLabel);
+        panelLabel.add(fecLabel);
+        panelLabel.add(punLabel);
+        
+        //Creamos los field
+        JPanel panelField = new JPanel();
+        panelField.setLayout(new GridLayout(0,1));
+        panelField.add(numField);
+        panelField.add(nomField);
+        panelField.add(edadField);
+        panelField.add(fecField);
+        panelField.add(punField);
+        
+        //Creamos un panel para el botón a la derecha
+        JPanel panelBorrar = new JPanel();
+        panelField.setLayout(new GridLayout(0,1)); 
+        panelBorrar.add(borrar);
+        //Los colocamos en el contenedor que se hereda de extends JPanel (this)
+        //(es lo primero que hemos definido en el constructor)
+        //Creamos un JPanel para un título arriba al contenedor(this)
+        add(new JLabel("CLIENTES", SwingConstants.CENTER), BorderLayout.NORTH);
+        add(panelLabel, BorderLayout.WEST);
+        add(panelField, BorderLayout.CENTER);
+        add(panelBorrar, BorderLayout.EAST);
+        add(panelNav, BorderLayout.SOUTH);
+        
+        //EVENTOS BOTONES
+        siguiente.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.avanzar();
+                actualizarVista();
+            }
+        });
+        anterior.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.retroceder();
+                actualizarVista();
+            }
+        });
+        ultimo.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.ultimoCliente();
+                actualizarVista();
+            }
+        });
+        primero.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.primerCliente();
+                actualizarVista();
+            }
+        });
+        borrar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.borrarCliente();
+                actualizarVista();
+            }
+        });       
         
     }
     

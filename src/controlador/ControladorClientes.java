@@ -119,7 +119,7 @@ public class ControladorClientes {
     }
     
     public Cliente clienteActual(){
-        if(!lista.isEmpty()){
+        if(lista.isEmpty()){
             return null;
         }else{
             return lista.get(actual);
