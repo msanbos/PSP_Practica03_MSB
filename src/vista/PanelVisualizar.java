@@ -56,14 +56,6 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));   
         
-        //Creamos el panel navegación y añadimos los componentes
-        JPanel panelNav = new JPanel();
-        panelNav.setLayout(new GridLayout(1,0));//Solo una fila
-        panelNav.add(ultimo);
-        panelNav.add(anterior);
-        panelNav.add(siguiente);
-        panelNav.add(primero);
-        
         //Creamos el panel de los Label
         JPanel panelLabel = new JPanel();
         panelLabel.setLayout(new GridLayout(0,1));//Una columna
@@ -81,6 +73,14 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         panelField.add(edadField);
         panelField.add(fecField);
         panelField.add(punField);
+        
+        //Creamos el panel navegación y añadimos los componentes
+        JPanel panelNav = new JPanel();
+        panelNav.setLayout(new GridLayout(1,0));//Solo una fila
+        panelNav.add(ultimo);
+        panelNav.add(anterior);
+        panelNav.add(siguiente);
+        panelNav.add(primero);
         
         //Creamos un panel para el botón a la derecha
         JPanel panelBorrar = new JPanel();
@@ -131,7 +131,30 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
                 actualizarVista();
             }
         });       
+    /*  
+        COMO SERÍA CON LAMBDA
         
+        siguiente.addActionListener((ActionEvent e) -> {
+            ControladorClientes.controladorClientes.avanzar();
+            actualizarVista();
+        });
+        anterior.addActionListener((ActionEvent e) -> {
+            ControladorClientes.controladorClientes.retroceder();
+            actualizarVista();
+        });
+        ultimo.addActionListener((ActionEvent e) -> {
+            ControladorClientes.controladorClientes.ultimoCliente();
+            actualizarVista();
+        });
+        primero.addActionListener((ActionEvent e) -> {
+            ControladorClientes.controladorClientes.primerCliente();
+            actualizarVista();
+        });
+        borrar.addActionListener((ActionEvent e) -> {
+            ControladorClientes.controladorClientes.borrarCliente();
+            actualizarVista();
+        });     
+    */    
     }
     
     public void actualizarVista(){

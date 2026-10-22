@@ -4,6 +4,8 @@ import controlador.ControladorClientes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelNuevo extends JPanel{// HEREDAN DE JPANEL
     //Text Field para incluir los datos
@@ -65,6 +67,50 @@ public class PanelNuevo extends JPanel{// HEREDAN DE JPANEL
         add(panelField, BorderLayout.CENTER);
         add(panelNav, BorderLayout.SOUTH);     
         
+        //Creamos los eventos de los botones
+        
+        /**AQUI VAMOS A DEVOLVER LOS MENSAJES DE TEXTO SEGüN LO QUE DEVUELVA
+         * EL MÉTODO añadir, que devuelve un String con el mensaje
+         * con JOptionPane.showMessageDialog(el panel donde aparece, mensaje, 
+         * titulo, tipo) podemos lanzar un mensaje con una ventana emergente
+         * 
+         * Podemos usar distintos tipos: ERROR_MESSAGE, WARNING MESSAGE, 
+         * INFORMATION MESSAGE
+         * 
+         */
+        guardarBtn.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                //Controlamos si no introduce números el usuario en los campos
+                //necesarios con try/catch
+                try{
+                    //Recogemos los campos
+                    String num = numField.getText();
+                    String nom = nomField.getText();
+                    String edad = edadField.getText();
+                    String fec = fecField.getText();
+                    String pun = punField.getText();
+                    //Recogemos el mensaje que devuelve la función añadir
+                    String mensaje = ControladorClientes.controladorClientes.añadirCliente(num, nom, edad, fec, pun);
+                    
+                    if (mensaje == null){
+                        JOptionPane.showMessageDialog(PanelNuevo.this, "Cliente "
+                                + "guardado con éxito","Cliente guardado", 
+                                JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos(); //Una vez guardado, limpiamos los campos 
+                    }else{
+                        //Devolvemos el mensaje de error de validación
+                        JOptionPane.showMessageDialog(PanelNuevo.this,mensaje,
+                                "Datos no válidos",JOptionPane.WARNING_MESSAGE);
+                        
+                    }
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(PanelNuevo.this,"Por favor,"
+                            + " revise los campos numéricos","Error de formato",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
         
                
     }

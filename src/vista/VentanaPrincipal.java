@@ -62,6 +62,7 @@ public class VentanaPrincipal extends JFrame {//HEREDA DE JFRAME
             @Override
             public void actionPerformed(ActionEvent e){
                 cardLayout.show(contenedor,"visual");
+                panelVisual.actualizarVista();//Actualizamos la vista
             }
         });        
         itemB.addActionListener(new ActionListener(){

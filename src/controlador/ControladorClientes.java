@@ -77,7 +77,7 @@ public class ControladorClientes {
      * @param fechaNac
      * @return 
      */    
-    public String añadirCliente(String numero,String nombre, String edad, String puntos, String fechaNac){
+    public String añadirCliente(String numero,String nombre, String edad,  String fechaNac,String puntos){
         //Parseamos los Stringd de la Vista a sus valores reales
         int num = Integer.parseInt(numero);
         int ed = Integer.parseInt(edad);
