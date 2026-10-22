@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 
 public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
     //Text Field para incluir los datos
@@ -165,7 +166,9 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
             numField.setText(String.valueOf(c.getNumero()));
             nomField.setText(c.getNombre());
             edadField.setText(String.valueOf(c.getEdad()));
-            fecField.setText(c.getFecha().toString());
+            //Para devolver el formato de fecha de aquí
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            fecField.setText(c.getFecha().format(formato));//Incluimos el formato
             punField.setText(String.valueOf(c.getPuntos()));
         }else{
             numField.setText(""); nomField.setText("");

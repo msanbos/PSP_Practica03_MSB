@@ -20,7 +20,7 @@ public class PanelNuevo extends JPanel{// HEREDAN DE JPANEL
         numLabel = new JLabel("Número:");
         nomLabel = new JLabel("Nombre:");
         edadLabel = new JLabel("Edad:");
-        fecLabel = new JLabel("Fecha de Nacimiento:");        
+        fecLabel = new JLabel("Fecha de Nac.(DD-MM-YYYY):");        
         punLabel = new JLabel("PUNTOS:");     
         
         //Creamos los campos de texto, esta vez si son modificables

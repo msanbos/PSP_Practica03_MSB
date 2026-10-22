@@ -5,6 +5,7 @@ import modelo.Cliente;//Importamos el modelo
 import java.time.LocalDate;
 import java.util.ArrayList;//Las colecciones que vamos a usar
 import java.util.Collections;
+import java.time.format.DateTimeFormatter; //Para cambiar el formato a la fecha
 import java.util.Comparator;//Para usar compare
 
 /*
@@ -91,9 +92,11 @@ public class ControladorClientes {
         
         //Validamos la fecha, tenemos en cuenta que puede fallar el parse
         try{
-            fecha = LocalDate.parse(fechaNac);
+            //Creamos el formato
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            fecha = LocalDate.parse(fechaNac, formato);//Incluimos el formato
         }catch(Exception ex){
-            return "Error: El formato de fecha no es correcto (YYYY-MM-DD)";
+            return "Error: El formato de fecha no es correcto (DD-MM-YYYY)";
         }
         //Obtenemos el año de la fecha con el método .getYear() de LocalDate
         int anyo = fecha.getYear();
