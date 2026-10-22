@@ -117,7 +117,7 @@ public class ControladorClientes {
             lista.remove(actual);
         }
         //Si el índice es mayor que el tamaño de la lista y que 0
-        if(actual > lista.size() && actual > 0){
+        if(actual >= lista.size() && actual > 0){
             actual--;//Bajamos el índice al anterior que se ha borrado
         }
     }

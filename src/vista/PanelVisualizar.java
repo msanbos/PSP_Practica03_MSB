@@ -17,7 +17,7 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
     private JLabel numLabel,nomLabel,edadLabel,fecLabel,punLabel;
     
     //Los botones
-    private JButton anterior,siguiente,ultimo,primero,borrar;
+    private JButton anteriorBtn,siguienteBtn,ultimoBtn,primeroBtn,borrarBtn,ordenarBtn;
     
     //Constructor
     public PanelVisualizar(){
@@ -43,11 +43,12 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         punField.setForeground(Color.blue);    
         
         //Creamos los botones
-        siguiente = new JButton ("Siguiente >");
-        anterior = new JButton ("< Anterior");
-        ultimo = new JButton ("Último");
-        primero = new JButton ("Primero");        
-        borrar = new JButton ("BORRAR");        
+        siguienteBtn = new JButton ("Siguiente >");
+        anteriorBtn = new JButton ("< Anterior");
+        ultimoBtn = new JButton ("Último");
+        primeroBtn = new JButton ("Primero");        
+        borrarBtn = new JButton ("BORRAR");        
+        ordenarBtn = new JButton("Ordenar por nº");
         
         /*CREAMOS LOS PANELES
         
@@ -78,15 +79,16 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         //Creamos el panel navegación y añadimos los componentes
         JPanel panelNav = new JPanel();
         panelNav.setLayout(new GridLayout(1,0));//Solo una fila
-        panelNav.add(ultimo);
-        panelNav.add(anterior);
-        panelNav.add(siguiente);
-        panelNav.add(primero);
+        panelNav.add(primeroBtn);        
+        panelNav.add(anteriorBtn);
+        panelNav.add(siguienteBtn);
+        panelNav.add(ultimoBtn);
         
         //Creamos un panel para el botón a la derecha
         JPanel panelBorrar = new JPanel();
-        panelField.setLayout(new GridLayout(0,1)); 
-        panelBorrar.add(borrar);
+        panelBorrar.setLayout(new GridLayout(0,1));         
+        panelBorrar.add(ordenarBtn);
+        panelBorrar.add(borrarBtn);
         //Los colocamos en el contenedor que se hereda de extends JPanel (this)
         //(es lo primero que hemos definido en el constructor)
         //Creamos un JPanel para un título arriba al contenedor(this)
@@ -97,41 +99,48 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         add(panelNav, BorderLayout.SOUTH);
         
         //EVENTOS BOTONES
-        siguiente.addActionListener(new ActionListener(){
+        siguienteBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 ControladorClientes.controladorClientes.avanzar();
                 actualizarVista();
             }
         });
-        anterior.addActionListener(new ActionListener(){
+        anteriorBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 ControladorClientes.controladorClientes.retroceder();
                 actualizarVista();
             }
         });
-        ultimo.addActionListener(new ActionListener(){
+        ultimoBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 ControladorClientes.controladorClientes.ultimoCliente();
                 actualizarVista();
             }
         });
-        primero.addActionListener(new ActionListener(){
+        primeroBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 ControladorClientes.controladorClientes.primerCliente();
                 actualizarVista();
             }
         });
-        borrar.addActionListener(new ActionListener(){
+        borrarBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 ControladorClientes.controladorClientes.borrarCliente();
                 actualizarVista();
             }
-        });       
+        });      
+        ordenarBtn.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ControladorClientes.controladorClientes.ordenarPorNumero();
+                actualizarVista();
+            }
+        });
     /*  
         COMO SERÍA CON LAMBDA
         
@@ -176,11 +185,12 @@ public class PanelVisualizar extends JPanel {//HEREDA DE JPANEL
         }
         
         //Desactivamos los botones usando las funciones del controlador
-        anterior.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
-        siguiente.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
-        primero.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
-        ultimo.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
-        borrar.setEnabled(!ControladorClientes.controladorClientes.esVacia());
+        anteriorBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
+        siguienteBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
+        primeroBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esPrimero());
+        ultimoBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia() && !ControladorClientes.controladorClientes.esUltimo());
+        borrarBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia());
+        ordenarBtn.setEnabled(!ControladorClientes.controladorClientes.esVacia());
     }
     
     //
